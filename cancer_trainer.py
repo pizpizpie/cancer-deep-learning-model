@@ -1,15 +1,11 @@
 import tensorflow as tf
 import numpy as np
 
-# training_set = tf.contrib.learn.datasets.base.load_csv(filename="train.csv", target_dtype=np.int)
-# test_set =     tf.contrib.learn.datasets.base.load_csv(filename="test.csv",  target_dtype=np.int)
-
 training_set = tf.contrib.learn.datasets.base.load_csv_with_header(filename="train.csv", target_dtype=np.int, features_dtype=np.int, target_column=-1)
 test_set =     tf.contrib.learn.datasets.base.load_csv_with_header(filename="test.csv",  target_dtype=np.int, features_dtype=np.int, target_column=-1)
 
 feature_columns = [tf.contrib.layers.real_valued_column("", dimension=9)]
 
-# classifier = tf.contrib.learn.DNNClassifier(hidden_units=[12, 12, 12], n_classes=2)
 classifier = tf.contrib.learn.DNNClassifier(feature_columns=feature_columns, hidden_units=[12, 12, 12], n_classes=2)
 
 # note: to set L1 or L2 regularization (for overfitting), learning rate, etc.
